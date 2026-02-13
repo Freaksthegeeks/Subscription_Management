@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<div class="app">
+    <div class="sidebar">
+        <h2>SubMaster</h2>
+        <a href="/client/dashboard">Dashboard</a>
+        <a class="active">Payments</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <h1>Payment History</h1>
+
+        {% for p in history %}
+        <div class="card">
+            <p><b>Amount:</b> ₹{{ p.amount }}</p>
+            <p><b>Status:</b> {{ p.status }}</p>
+            <p><b>Date:</b> {{ p.payment_date }}</p>
+            <p><b>Plan ID:</b> {{ p.plan_id }}</p>
+        </div>
+        {% else %}
+            <p>No payment records found.</p>
+        {% endfor %}
+    </div>
+</div>

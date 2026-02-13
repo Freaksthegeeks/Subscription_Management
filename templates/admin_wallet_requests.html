@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<div class="app">
+    <div class="sidebar">
+        <h2>SubMaster</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a class="active">Wallet Requests</a>
+    </div>
+
+    <div class="main">
+        <h1>Wallet Top-Up Requests</h1>
+
+        {% for r in requests %}
+        <div class="card">
+            <p><b>User:</b> {{ r.user_email }}</p>
+            <p><b>Amount:</b> ₹{{ r.amount }}</p>
+            <p><b>UTR:</b> {{ r.utr }}</p>
+            <a href="/admin/wallet-approve/{{ r._id }}">
+                <button>Approve</button>
+            </a>
+        </div>
+        {% else %}
+            <p>No pending requests</p>
+        {% endfor %}
+    </div>
+</div>

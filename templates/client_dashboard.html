@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>SubMaster</h2>
+        <a class="active" href="/client/dashboard">Dashboard</a>
+        <a href="/client/payments">Payments</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <h1>Dashboard</h1>
+            <div class="badge">₹ {{ user.wallet }}</div>
+        </div>
+
+        <!-- WALLET + SUBSCRIPTIONS -->
+        <div class="grid">
+
+            <!-- WALLET CARD -->
+            <div class="card">
+                <h3>Wallet Balance</h3>
+                <h1>₹{{ user.wallet }}</h1>
+
+                <!-- ✅ QR CODE SECTION -->
+                <div style="margin-top:15px;">
+                    <p style="font-weight:600;">Pay via UPI</p>
+                    <p><b>UPI ID:</b> admin@upi</p>
+
+                    <!-- 🔑 THIS MUST BE IN /static -->
+                    <img src="/static/admin_qr.jpeg"
+                         alt="UPI QR Code"
+                         style="width:200px; margin:10px 0; border-radius:12px;">
+                </div>
+
+                <!-- PAYMENT REQUEST FORM -->
+                <form method="POST" action="/client/wallet/request">
+                    <input type="number" name="amount" placeholder="Amount" required>
+                    <input type="text" name="utr" placeholder="UTR / Transaction ID" required>
+                    <button type="submit">Add Funds</button>
+                </form>
+            </div>
+
+            <!-- SUBSCRIPTIONS CARD -->
+            <div class="card">
+                <h3>My Subscriptions</h3>
+
+                {% for sub in subscriptions %}
+                    <p>
+                        <b>{{ sub.plan_name }}</b><br>
+                        Status: {{ sub.status }}<br>
+                        Ends on: {{ sub.end_date }}
+                    </p>
+                    <hr>
+                {% else %}
+                    <p>No subscriptions yet.</p>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!-- AVAILABLE PLANS -->
+        <h2 style="margin:30px 0 15px;">Available Plans</h2>
+
+        <div class="grid">
+            {% for plan in plans %}
+            <div class="plan {% if loop.index == 2 %}popular{% endif %}">
+                <h2>{{ plan.name }}</h2>
+                <h1>₹{{ plan.price }}/{{ plan.billing_cycle }}</h1>
+
+                <form method="POST" action="/client/subscribe/{{ plan._id }}">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

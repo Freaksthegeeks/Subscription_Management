@@ -1,0 +1,25 @@
+MONGODB SAVING FROM WINDOWS TO VM:
+
+> systemctl status mongod
+
+> sudo systemctl start mongod
+> sudo systemctl enable mongod
+> source venv/bin/activate
+ WIndows ::: .\venv\Scripts\activate
+> python app.py
+
+In Windows:
+    > mongodump --db subscription_db --out dump
+In VM:
+    >mongorestore --db subscription_db /media/sf_shared_dump/subscription_db
+    To VERIFY DB
+    >mongosh
+    >use subscription_db
+    >db.users.find().pretty()
+
+
+TO UPDATE THE GITHUB REPOSITORY:
+> git status
+> git add .
+> git commit -m "Updated login/signup and added new project files"
+> git push origin main

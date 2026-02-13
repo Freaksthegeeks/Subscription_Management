@@ -1,0 +1,12 @@
+<h2>Edit Plan</h2>
+
+<form method="POST">
+    <input type="text" name="name" value="{{ plan.name }}" required>
+    <input type="number" name="price" value="{{ plan.price }}" required>
+    <input type="text" name="billing_cycle" value="{{ plan.billing_cycle }}" required>
+    <textarea name="description">{{ plan.description }}</textarea>
+
+    <button type="submit">Update</button>
+</form>
+
+<a href="/admin/plans">Back</a>

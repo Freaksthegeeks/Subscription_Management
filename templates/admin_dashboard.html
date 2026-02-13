@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>SubMaster</h2>
+        <a class="active" href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/wallet-requests">Approve Wallet Payments</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <h1>Admin Dashboard</h1>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <h1>₹{{ total_revenue }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Active Subscriptions</h3>
+                <h1>{{ active_subs }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Total Plans</h3>
+                <h1>{{ total_plans }}</h1>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

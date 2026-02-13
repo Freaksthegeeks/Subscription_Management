@@ -1,0 +1,14 @@
+<h2>All Plans</h2>
+
+{% for plan in plans %}
+<div style="border:1px solid #ccc; padding:10px; margin:10px;">
+    <h4>{{ plan.name }}</h4>
+    <p>₹{{ plan.price }} / {{ plan.billing_cycle }}</p>
+    <p>Status: {{ plan.status }}</p>
+
+    <a href="/admin/edit-plan/{{ plan._id }}">Edit</a> |
+    <a href="/admin/delete-plan/{{ plan._id }}">Delete</a>
+</div>
+{% endfor %}
+
+<a href="/admin/dashboard">Back</a>

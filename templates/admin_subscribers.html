@@ -1,0 +1,21 @@
+<h2>Subscribers</h2>
+
+<table border="1">
+    <tr>
+        <th>Email</th>
+        <th>Plan</th>
+        <th>Status</th>
+        <th>Start Date</th>
+    </tr>
+
+    {% for sub in subs %}
+    <tr>
+        <td>{{ sub.user_email }}</td>
+        <td>{{ sub.plan_name }}</td>
+        <td>{{ sub.status }}</td>
+        <td>{{ sub.start_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/admin/dashboard">Back</a>
